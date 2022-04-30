@@ -3,14 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import { LabFormula } from './LabFormula';
 
-function App() {
+import { ArmcharService } from './armchar/armchar.service';
 
-  useEffect(() => {
-    fetch("http://localhost:3000/adv/cieran") // TODO // delegate to armchar.service
-    //fetch('./armchar/assets/adv_cieran.json') // does not work
-      .then(response => response.json())
-      .then(data => console.log(data));
-    }, []);
+function App() {
+  
+  //useEffect(() => {
+    ArmcharService.getAdvancements();
+  //}, []);
+
+  //ArmcharService.getPregameAdvancements();
 
   return (
     <div className="App">
