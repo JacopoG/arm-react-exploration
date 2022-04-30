@@ -1,12 +1,8 @@
-import React from 'react';
-
-export class Value extends React.Component<any> {
-  render () {
-    return (
-      <div className="inline-flex flex-col items-center">
-        <div>{this.props.children}</div>
-        { this.props.label && <div>{this.props.label}</div> }
-      </div>
-    );
-  }
+export function Value(props:any) {
+  return(
+    <div className="inline-flex flex-col items-center">
+     <div>{ props.value }</div>
+     { props.label && <div>{ props.label }</div> }
+    </div>
+  );
 }

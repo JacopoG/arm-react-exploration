@@ -7,13 +7,13 @@ export default {
   component: Value
 }
 
-export const Plain: Story<any> = (args) => <Value>{args.children}</Value>;
+export const Plain: Story<any> = (args) => <Value { ...args} />
 Plain.args = {
-  children: 8
+  value: 8
 }
 
-export const WithLabel: Story<any> = (args) => <Value label={args.label}>8</Value>;
+export const WithLabel: Story<any> = (args) => <Value { ...args } />
 WithLabel.args = {
-  children: 8,
+  value: 8,
   label: "Label"
 }
