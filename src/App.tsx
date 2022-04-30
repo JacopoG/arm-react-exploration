@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { LabFormula } from './LabFormula';
 
 function App() {
+
+  useEffect(() => {
+    fetch("http://localhost:3000/adv/cieran") // TODO // delegate to armchar.service
+    //fetch('./armchar/assets/adv_cieran.json') // does not work
+      .then(response => response.json())
+      .then(data => console.log(data));
+    }, []);
+
   return (
     <div className="App">
       <header className="App-header">
