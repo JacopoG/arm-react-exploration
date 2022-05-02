@@ -8,16 +8,14 @@ export class ArmcharService {
     return fetch('/armchar/assets/adv_cieran.json')
       .then(response => response.json())
       .then(data => {
-        console.log(data);
+        //console.log(data);
 
         let advs: Advancement[] = [];
         for (let x of data) {
-          let adv = new Advancement();
-          adv.parse(x);
-          advs.push(adv);
+          advs.push(Advancement.parse(x) as Advancement);
         }
 
-        console.log("advs", advs);
+        //console.log("advs", advs);
         return advs;
       });
   }

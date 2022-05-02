@@ -1,5 +1,6 @@
 import { Season } from '../utils/enums'
 import { Trait } from './trait'
+import { Mapping, Parser } from './parser'
 
 export enum AdvancementType {
   Reading,
@@ -15,38 +16,31 @@ export class Advancement {
   traits?: Trait[];
   id?: string;
 
-  parse(x:any):void {
-    // ugly thing // refactor
-    if (x['advancementcontents']) {
-      let xac = x['advancementcontents'];
-      let fields = {
-        'season'      : 'arm:atSeason', // TODO convert to enum Season
-        'awardXP'     : 'arm:awardsXP',
-        'description' : 'arm:hasAdvancementDescription',
-        'index'       : 'arm:hasAdvancementIndex',
-        //             ['advtype']['prefixedid']
-        'type'        :'arm:hasAdvancementTypeString',
-        'year'        :'arm:inYear',
-      }
-      for (let l of Object.keys(fields)) {
-        let r = (fields as any)[l];
-        if (xac[r])
-          (this as any)[l] = xac[r];
-      }
+  static parse(x:any):Advancement {
+    let m:Mapping = {
+        'season'      : ['advancementcontents', 'arm:atSeason'],
+        'awardXP'     : ['advancementcontents', 'arm:awardsXP'],
+        'description' : ['advancementcontents', 'arm:hasAdvancementDescription'],
+        'index'       : ['advancementcontents', 'arm:hasAdvancementIndex'],
+        //'type'      : ['advancementcontents', 'prefixedid', 'arm:hasAdvancementType'] // necessary?
+        'type'        : ['advancementcontents', 'arm:hasAdvancementTypeString'],
+        'year'        : ['advancementcontents', 'arm:inYear'],
+
+        'id'        : ['advancementid', 'prefixedid'],
+        // traits as a list // TODO
     }
-    //advancementid
-    if (x['advancementid'] && x['advancementid']['prefixedid']) {
-      this.id = x['advancementid']['prefixedid'];
-    }
-    // TODO
+    let tmp:Advancement = Parser.parseWithMapping(x,m);
+
     if (x['advancementtraits']) {
-      if (! this.traits) this.traits = [];
+      if (! tmp.traits) tmp.traits = [];
       for (let y of x['advancementtraits']) {
-        let t = new Trait();
-        t.parse(y);
-        this.traits.push(t);
+        tmp.traits.push(Trait.parse(y));
       }
     }
+
+    //console.log("tmp", tmp);
+    
+    return tmp;
   }
 
 }

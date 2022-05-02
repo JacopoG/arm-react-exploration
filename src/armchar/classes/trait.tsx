@@ -1,3 +1,5 @@
+import { Mapping, Parser } from './parser'
+
 export enum TraitClass {
   Herbam,
 }
@@ -17,30 +19,17 @@ export class Trait {
   }
 
   // TODO // May miss fields from other GETs
-  parse(x:any):void {
-    if (x['arm:addedXP']) {
-      this.addedXP = x['arm:addedXP'];
+  static parse(x:any):Trait {
+    let m:Mapping = {
+      'addedXP'     : ['arm:addedXP'],
+      'totalXP'     : ['arm:hasTotalXP'],
+      'description' : ['arm:hasDescription'],
+      'label'       : ['arm:hasLabel'],
+      'speciality'  : ['arm:hasSpeciality'],
+      'class'       : ['arm:traitClass','prefixedid'],
+      'specialInfo' : ['arm:isSpecialTrait','prefixedid'],
+      'id'          : ['arm:prefixedid'],
     }
-    if (x['arm:hasTotalXP']) {
-      this.totalXP = x['arm:hasTotalXP'];
-    }
-    if (x['arm:hasDescription']) {
-      this.description = x['arm:hasDescription'];
-    }
-    if (x['arm:hasLabel']) {
-      this.label = x['arm:hasLabel'];
-    }
-    if (x['arm:hasSpeciality']) {
-      this.speciality = x['arm:hasSpeciality'];
-    }
-    if (x['arm:traitClass'] && x['arm:traitClass']['prefixedid']) {
-      this.class = x['arm:traitClass']['prefixedid']; // TODO convert to enum TraitClass
-    }
-    if (x['arm:isSpecialTrait'] && x['arm:isSpecialTrait']['prefixedid']) {
-      this.specialInfo = x['arm:isSpecialTrait']['prefixedid'];
-    }
-    if (x['arm:prefixedid']) {
-      this.id = x['arm:prefixedid'];
-    }
+    return Parser.parseWithMapping(x,m);
   }
 }
