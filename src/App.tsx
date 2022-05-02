@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { LabFormula } from './components/LabFormula';
-import { AdvancementCard } from './components/Advancement'
+import { AdvancementCard } from './components/AdvancementCard'
 
 import { ArmcharService } from './armchar/armchar.service';
 import { Advancement } from './armchar/classes/advancement';
@@ -29,10 +29,13 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
 
-        {/* <AdvancementCard advs={(advs != undefined)? (advs as Advancement[])[0] : undefined }/>
-        <AdvancementCard advs={(advs != undefined)? advs[0] : undefined }/>
+        {/*
+        <AdvancementCard advs={(advs != undefined)? (advs as Advancement[])[0] : undefined }/>
+        <AdvancementCard adv={(advs != undefined)? advs[0] : undefined }/>
         */}
-
+        { advs && 
+          <AdvancementCard adv={ advs[0] }/>
+        }
         <LabFormula int={2} theory={4} aura={8} />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
