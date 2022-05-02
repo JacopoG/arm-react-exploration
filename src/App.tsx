@@ -7,9 +7,9 @@ import { ArmcharService } from './armchar/armchar.service';
 
 function App() {
   
-  //useEffect(() => {
+  useEffect(() => {
     ArmcharService.getAdvancements();
-  //}, []);
+  }, []);
 
   //ArmcharService.getPregameAdvancements();
 

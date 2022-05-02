@@ -3,12 +3,12 @@ import { Advancement } from './classes/advancement';
 export class ArmcharService {
   static async getAdvancements(): Promise<Advancement[]> {
     console.log("getAdvancements");
-    let get_adv = 'http://localhost:3000/adv/cieran';
-    return fetch(get_adv)
-    //fetch('./armchar/assets/adv_cieran.json') // does not work
+    //let get_adv = 'http://localhost:3000/adv/cieran';
+    //return fetch(get_adv)
+    return fetch('/armchar/assets/adv_cieran.json')
       .then(response => response.json())
       .then(data => {
-        //console.log(data);
+        console.log(data);
 
         let advs: Advancement[] = [];
         for (let x of data) {
@@ -16,7 +16,8 @@ export class ArmcharService {
           adv.parse(x);
           advs.push(adv);
         }
-        //console.log("advs", advs);
+
+        console.log("advs", advs);
         return advs;
       });
   }
