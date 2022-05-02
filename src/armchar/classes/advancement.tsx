@@ -11,7 +11,7 @@ export class Advancement {
   season?: Season;
   awardXP?: number;
   description?: string;
-  index?: 100;
+  index?: number;
   type?: AdvancementType; // maybe adv_type?
   traits?: Trait[];
   id?: string;

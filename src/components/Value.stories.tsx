@@ -1,5 +1,5 @@
 import { Value } from './Value';
-import './index.css';
+import '../index.css';
 import { Story } from '@storybook/react';
 
 export default {

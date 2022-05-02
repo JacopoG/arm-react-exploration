@@ -1,5 +1,5 @@
 import { LabFormula } from './LabFormula';
-import './index.css';
+import '../index.css';
 import { Story } from '@storybook/react';
 
 export default {
