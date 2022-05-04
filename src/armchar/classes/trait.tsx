@@ -12,7 +12,7 @@ export class Trait {
   speciality?: string;
   specialInfo?: string; // ad-hoc class in future?
   id?: string;
-  class?: TraitClass;
+  class?: string; // TraitClass;
 
   isSpecial(): boolean {
     return !(this.specialInfo === undefined);

@@ -8,11 +8,11 @@ export enum AdvancementType {
 
 export class Advancement {
   year?: number;
-  season?: Season;
+  season?: string; // Season;
   awardXP?: number;
   description?: string;
   index?: number;
-  type?: AdvancementType; // maybe adv_type?
+  type?: string; // AdvancementType; // maybe adv_type?
   traits?: Trait[];
   id?: string;
 

@@ -23,7 +23,7 @@ export function AdvancementCard (props:any) {
         <div>
           <p>Traits:</p>
               <ul>
-                { (adv.traits as any).map((t:Trait) =>
+                { (adv.traits as Trait[]).map((t:Trait) =>
                   <li key={ t.id }>
                     { t.addedXP     && <p>addedXP           : { t.addedXP     }</p> }
                     { t.totalXP     && <p>totalXP           : { t.totalXP     }</p> }

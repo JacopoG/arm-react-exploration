@@ -1,4 +1,4 @@
-import { AdvancementCard } from './AdvancementCard';
+import { AdvancementList } from './AdvancementList';
 
 import { Advancement } from '../armchar/classes/advancement'
 import { Trait } from '../armchar/classes/trait'
@@ -7,8 +7,8 @@ import '../index.css';
 import { Story } from '@storybook/react';
 
 export default {
-  title: 'AdvancementCard',
-  component: AdvancementCard
+  title: 'AdvancementList',
+  component: AdvancementList
 }
 
 let fullTrait = {
@@ -31,8 +31,11 @@ let fullAdv:Advancement = {
   traits: [ fullTrait as Trait ],
 };
 
-export const AllIn: Story<any> = (args) => <AdvancementCard {...args} />;
+export const AllIn: Story<any> = (args) => <AdvancementList {...args} />;
 AllIn.args = {
-  adv: fullAdv
+  advs : [
+    fullAdv,
+    fullAdv,
+  ]
 }
 
