@@ -5,14 +5,17 @@ export enum TraitClass {
 }
 
 export class Trait {
-  addedXP?: number;
-  totalXP?: number;
-  description?: string;
-  label?: string;
-  speciality?: string;
-  specialInfo?: string; // ad-hoc class in future?
-  id?: string;
-  class?: string; // TraitClass;
+  addedXP     ?: number;
+  totalXP     ?: number;
+  description ?: string;
+  detail      ?: string;
+  label       ?: string;
+  reference   ?: string;
+  score       ?: number;
+  speciality  ?: string;
+  specialInfo ?: string; // ad-hoc class in future?
+  id          ?: string;
+  class       ?: string; // TraitClass;
 
   isSpecial(): boolean {
     return !(this.specialInfo === undefined);
@@ -24,7 +27,10 @@ export class Trait {
       'addedXP'     : ['arm:addedXP'],
       'totalXP'     : ['arm:hasTotalXP'],
       'description' : ['arm:hasDescription'],
+      'detail'      : ['arm:hasDetail'],
       'label'       : ['arm:hasLabel'],
+      'reference'   : ['arm:hasReference'],
+      'score'       : ['arm:hasScore'],
       'speciality'  : ['arm:hasSpeciality'],
       'class'       : ['arm:traitClass','prefixedid'],
       'specialInfo' : ['arm:isSpecialTrait','prefixedid'],

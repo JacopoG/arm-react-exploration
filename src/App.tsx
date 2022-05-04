@@ -10,17 +10,31 @@ import { Advancement } from './armchar/classes/advancement';
 
 function App() {
 
-  let [advs, setAdvs] = useState(); // how to force type here?
+  let [advs    , setAdvs   ] = useState(); // how to force type here?
+  let [virtues , setVirtues] = useState(); // how to force type here?
+  let [flaws   , setFlaws  ] = useState(); // how to force type here?
 
-  const getAnswer = async () => {
+  const getAdvancements = async () => {
     const res:Advancement[] = await ArmcharService.getAdvancements();
     setAdvs(res as any);
 
     //ArmcharService.getPregameAdvancements();
   };
 
+  const getVirtues = async () => {
+    const virtues = await ArmcharService.getVirtues(1217, "Summer");
+    setVirtues(virtues as any);
+  };
+
+  const getFlaws = async () => {
+    const flaws = await ArmcharService.getFlaws(1217, "Summer");
+    setFlaws(flaws as any);
+  };
+
   useEffect(() => {
-    getAnswer();
+    //getAdvancements();
+    getVirtues();
+    getFlaws();
   }, []);
 
 
