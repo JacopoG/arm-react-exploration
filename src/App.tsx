@@ -13,6 +13,7 @@ function App() {
   let [advs    , setAdvs   ] = useState(); // how to force type here?
   let [virtues , setVirtues] = useState(); // how to force type here?
   let [flaws   , setFlaws  ] = useState(); // how to force type here?
+  let [persTraits   , setPersTraits  ] = useState(); // how to force type here?
 
   const getAdvancements = async () => {
     const res:Advancement[] = await ArmcharService.getAdvancements();
@@ -31,10 +32,16 @@ function App() {
     setFlaws(flaws as any);
   };
 
+  const getPersonalityTraits = async () => {
+    const persTraits = await ArmcharService.getPersonalityTraits(1217, "Summer");
+    setFlaws(persTraits as any);
+  };
+
   useEffect(() => {
     //getAdvancements();
     getVirtues();
     getFlaws();
+    getPersonalityTraits();
   }, []);
 
 

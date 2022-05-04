@@ -1,6 +1,7 @@
 import { Advancement } from './classes/advancement';
 import { Virtue } from './classes/virtue';
 import { Flaw } from './classes/flaw';
+import { PersonalityTrait } from './classes/personalityTrait';
 
 export class ArmcharService {
 
@@ -66,6 +67,27 @@ export class ArmcharService {
         }
         console.log("flaws", flaws);
         return flaws;
+      });
+  }
+
+  static async getPersonalityTraits(year:number, season:string): Promise<PersonalityTrait[]> {
+    console.log("getPersonalityTraits(", year, ",", season, ")");
+    let target:string = '/armchar/assets/personalitytrait_cieran_1217_summer.json';
+    //let target:string =
+    //  'http://localhost:3000/pt/cieran/' +
+    //  year.toString() +
+    //  '/' +
+    //  season.toString();
+    return fetch(target)
+      .then(response => response.json())
+      .then(data => {
+        //console.log("data", data);
+        let pts: PersonalityTrait[] = [];
+        for (let x of data) {
+          pts.push(PersonalityTrait.parse(x) as PersonalityTrait);
+        }
+        console.log("pers traits", pts);
+        return pts;
       });
   }
 
