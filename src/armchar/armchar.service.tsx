@@ -2,6 +2,7 @@ import { Advancement } from './classes/advancement';
 import { Virtue } from './classes/virtue';
 import { Flaw } from './classes/flaw';
 import { PersonalityTrait } from './classes/personalityTrait';
+import { Ability } from './classes/ability';
 
 export class ArmcharService {
 
@@ -88,6 +89,27 @@ export class ArmcharService {
         }
         console.log("pers traits", pts);
         return pts;
+      });
+  }
+
+  static async getAbilities(year:number, season:string): Promise<Ability[]> {
+    console.log("getAbilities(", year, ",", season, ")");
+    let target:string = '/armchar/assets/ability_cieran_1217_summer.json';
+    //let target:string =
+    //  'http://localhost:3000/ability/cieran/' +
+    //  year.toString() +
+    //  '/' +
+    //  season.toString();
+    return fetch(target)
+      .then(response => response.json())
+      .then(data => {
+        //console.log("data", data);
+        let abs: Ability[] = [];
+        for (let x of data) {
+          abs.push(Ability.parse(x) as Ability);
+        }
+        console.log("abilities", abs);
+        return abs;
       });
   }
 

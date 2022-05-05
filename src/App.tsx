@@ -3,17 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 import { LabFormula } from './components/LabFormula';
 import { AdvancementList } from './components/AdvancementList'
+import { AbilityList } from './components/AbilityList'
 
 import { ArmcharService } from './armchar/armchar.service';
 import { Advancement } from './armchar/classes/advancement';
-
 
 function App() {
 
   let [advs    , setAdvs   ] = useState(); // how to force type here?
   let [virtues , setVirtues] = useState(); // how to force type here?
   let [flaws   , setFlaws  ] = useState(); // how to force type here?
-  let [persTraits   , setPersTraits  ] = useState(); // how to force type here?
+  let [persTraits   , setPersTraits ] = useState(); // how to force type here?
+  let [abilities    , setAbilities  ] = useState(); // how to force type here?
 
   const getAdvancements = async () => {
     const res:Advancement[] = await ArmcharService.getAdvancements();
@@ -37,11 +38,17 @@ function App() {
     setFlaws(persTraits as any);
   };
 
-  useEffect(() => {
+  const getAbilities = async () => {
+    const abilities = await ArmcharService.getAbilities(1217, "Summer");
+    setAbilities(abilities as any);
+  };
+
+  useEffect(() => { // why is this called twice??
     //getAdvancements();
-    getVirtues();
-    getFlaws();
-    getPersonalityTraits();
+    //getVirtues();
+    //getFlaws();
+    //getPersonalityTraits();
+    getAbilities();
   }, []);
 
 
@@ -52,6 +59,10 @@ function App() {
 
         { advs && 
           <AdvancementList advs={ advs }/>
+        }
+
+        { abilities && 
+          <AbilityList abilities={ abilities }/>
         }
 
         <LabFormula int={2} theory={4} aura={8} />

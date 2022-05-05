@@ -7,6 +7,7 @@ export enum TraitClass {
 export class Trait {
   addedXP     ?: number;
   totalXP     ?: number;
+  xp          ?: number; // remaining XP
   description ?: string;
   detail      ?: string;
   label       ?: string;
@@ -26,6 +27,7 @@ export class Trait {
     let m:Mapping = {
       'addedXP'     : ['arm:addedXP'],
       'totalXP'     : ['arm:hasTotalXP'],
+      'xp'          : ['arm:hasXP'], // TODO needed?
       'description' : ['arm:hasDescription'],
       'detail'      : ['arm:hasDetail'],
       'label'       : ['arm:hasLabel'],
