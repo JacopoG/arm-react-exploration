@@ -23,3 +23,5 @@ export const ManyWords: Story<null> = () => <Card>
 
 </Card>;
 
+export const WithKittens: Story<null> = () => <Card><img src="http://placekitten.com/300/300" /></Card>
+
