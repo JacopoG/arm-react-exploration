@@ -4,6 +4,10 @@ const config = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+      serif: ['GrenzeGotisch', 'serif'],
+      sans: ['Vollkorn', 'sans-serif'],
+    },
     extend: {},
   },
   plugins: [],
