@@ -7,14 +7,13 @@ const styles = {
   backgroundSize: "580px",
   backgroundPosition: "-20px -17px",
   backgroundRepeat: "no-repeat",
-  display: "inline-block",
 }
 
 
 export function WIPAdvancementList (props:any) {
   return(
     <Card>
-      <div style={styles} className="w-full h-96">
+      <div style={props.showGraphicAsBackground ? styles : {}} className="inline-block w-full h-96">
 
         {/* HEAD */}
         <div className="flex items-center mt-4 ml-1">

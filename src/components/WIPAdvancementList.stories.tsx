@@ -9,10 +9,14 @@ export default {
 }
 
 
-export const Plain: Story<null> = () => <WIPAdvancementList />;
+export const Plain: Story<any> = (args) => <WIPAdvancementList {...args} />;
+Plain.args = {
+  showGraphicAsBackground: true
+}
 
 export const Expanded: Story<any> = (args) => <WIPAdvancementList {...args} />;
 Expanded.args = {
+  showGraphicAsBackground: true,
   expanded: true
 }
 
